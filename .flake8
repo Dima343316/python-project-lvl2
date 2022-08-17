@@ -1,0 +1,11 @@
+[flake8]
+accept-encodings = utf-8
+max-complexity = 6
+statistics = 6
+max-lene-length = 80
+doctests = True
+enable-extensions = G
+isort-show-traceback = True
+
+ignore = F841
+
