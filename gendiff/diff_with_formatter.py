@@ -1,0 +1,53 @@
+import json
+
+
+def read_file(file):
+    with open(file) as json_file:
+        data = json.load(json_file)
+    return data
+
+
+def stringify(value, replacer=' ', space_count=1, _lvl=1):
+    if isinstance(value, dict):
+        result = '{\n'
+        for el, val in value.items():
+            result += f'{replacer * space_count * _lvl}{el}: '
+            result += stringify(val, replacer, space_count, _lvl + 1) + '\n'
+        result += replacer * space_count * (_lvl - 1) + '}'
+    else:
+        result = str(value)
+    return result
+
+
+def generate_diff(file1, file2):
+    output_dictionary = dict()
+    open_file1 = read_file(file1)
+    open_file2 = read_file(file2)
+    chaning_keys_and_values_file1 = {v: k for k, v in open_file1.items()}
+    sorted_dictionary_file1 = sorted(chaning_keys_and_values_file1.items(), key=lambda x: x[1])
+    appeal_dictionary_file1 = dict(sorted_dictionary_file1)
+    new_open_file1 = {v: k for k, v in appeal_dictionary_file1.items()}
+    сhanging_keys_and_values_file2 = {v: k for k, v in open_file2.items()}
+    sorted_dictionary_file2 = sorted(сhanging_keys_and_values_file2.items(), key=lambda x: x[1])
+    appeal_dictionary_file2 = dict(sorted_dictionary_file2)
+    new_open_file2 = {v: k for k, v in appeal_dictionary_file2.items()}
+    for keys_one in new_open_file1.keys():
+        check_tmp = 0
+        for keys_two in new_open_file2.keys():
+            if keys_one == keys_two:
+                check_tmp = 1
+                if new_open_file1[keys_one] == new_open_file2[keys_two]:
+                    output_dictionary['  ' + keys_one] = new_open_file1[keys_one]
+                    new_open_file2.pop(keys_two)
+                    break
+                else:
+                    output_dictionary['- ' + keys_one] = new_open_file1[keys_one]
+                    output_dictionary["+ " + keys_one] = new_open_file2[keys_one]
+                    new_open_file2.pop(keys_two)
+                    break
+        if check_tmp == 0:
+            output_dictionary["- " + keys_one] = new_open_file1[keys_one]
+    for keys_one in new_open_file2.keys():
+        output_dictionary["+ " + keys_one] = new_open_file2[keys_one]
+    return stringify(output_dictionary)
+

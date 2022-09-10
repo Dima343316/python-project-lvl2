@@ -7,5 +7,5 @@ doctests = True
 enable-extensions = G
 isort-show-traceback = True
 
-ignore = F841
+ignore = F841 E501
 
