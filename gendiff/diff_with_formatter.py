@@ -7,13 +7,13 @@ def read_file(file):
     return data
 
 
-def stringify(value, replacer=' ', space_count=1, _lvl=1):
+def stringify(value, replacer=' ', space_count=2, _lvl=1):
     if isinstance(value, dict):
         result = '{\n'
         for el, val in value.items():
             result += f'{replacer * space_count * _lvl}{el}: '
             result += stringify(val, replacer, space_count, _lvl + 1) + '\n'
-        result += replacer * space_count * (_lvl - 1) + '}'
+        result += replacer * space_count * (_lvl - 1) + '}\n'
     else:
         result = str(value)
     return result
@@ -49,5 +49,8 @@ def generate_diff(file1, file2):
             output_dictionary["- " + keys_one] = new_open_file1[keys_one]
     for keys_one in new_open_file2.keys():
         output_dictionary["+ " + keys_one] = new_open_file2[keys_one]
-    return stringify(output_dictionary)
+    dictionary_output_to_a_string = stringify(output_dictionary)
+    replacing_the_value_True = dictionary_output_to_a_string.replace("True", "true")
+    replacing_the_value_False = replacing_the_value_True.replace("False", "false")
+    return replacing_the_value_False
 
