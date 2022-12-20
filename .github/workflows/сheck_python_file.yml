@@ -35,7 +35,7 @@ jobs:
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-coverage-tool
           chmod +x ./cc-test-coverage-tool
         env:
-          CC_TEST_REPORTER_ID: b80ee8738bf3a5c8eea61ef46ce888d182f06c21f143b2f29756d7f6feeae13e
+          CC_TEST_REPORTER_ID: ${{secrets.TEST_REPORTER_ID }}
         with:
           coverageCommand: make test-coverage
           debug: true
