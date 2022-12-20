@@ -38,4 +38,4 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.TEST_REPORTER_ID }}
         run: |
-          make test-coverage
+          ./cc-test-coverage-tool after-build -r "$CC_TEST_REPORTER_ID"
