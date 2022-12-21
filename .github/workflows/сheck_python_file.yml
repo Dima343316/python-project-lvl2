@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: "Instal poetry"
+      - name: "Install poetry"
         run: |
           pip install poetry
       - name: "Install requirements"
@@ -39,6 +39,6 @@ jobs:
           chmod +x ./cc-test-coverage-tool
       - name: Sending Reporter
         env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: 8b017fa9332da64c9b3cb4fd9fabd16d64f8a5e8e35f6b367ff1db2aa44f2fc5
         run: |
           ./cc-test-coverage-tool after-build -r "$CC_TEST_REPORTER_ID"
