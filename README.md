@@ -13,7 +13,7 @@ This utility compares two files (json or yml format) and shows a difference.
 
 
 ```bash
-$ git clone https://github.com/zhek111/python-project-lvl2
+$ git clone https://github.com/Dima343316/python-project-lvl2
 ```
 
 Use make (Makefile):
