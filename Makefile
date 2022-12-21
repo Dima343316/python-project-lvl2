@@ -12,4 +12,4 @@ lint:#запуск flake8
 test:#запуск тестов
 	poetry run pytest -vv
 test-coverage:#запуск тестов в CodeClimate
-	poetry run pytests --cov=gendiff --cov-report xml
+	poetry run pytest --cov=gendiff tests/ --cov-report xml
