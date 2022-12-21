@@ -33,8 +33,6 @@ jobs:
       - name: Install pytest-cov
         run: |
           pip install pytest-cov
-      - name: Run pytest-cov
-        run: make test-coverage
       - name: Test & publish code coverage
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-coverage-tool
