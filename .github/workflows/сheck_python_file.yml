@@ -30,7 +30,7 @@ jobs:
       - name: Run tests
         run: |
           make test
-      - name: Install pytest-cov
+      - name: Instal pytest-cov
         run: |
           pip install pytest-cov
       - name: Create Reporter
